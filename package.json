@@ -1,15 +1,15 @@
 {
-  "name": "vale-ou-e-golpe",
+  "name": "vale-a-compra",
   "private": true,
   "workspaces": ["frontend", "backend", "packages/*"],
   "scripts": {
     "dev": "concurrently -n FRONT,BACK -c green,cyan \"npm run dev -w frontend\" \"npm run dev -w backend\"",
-    "build": "npm run build -w @vale-ou-golpe/contracts && npm run build -w backend && npm run build -w frontend",
+    "build": "npm run build -w @vale-a-compra/contracts && npm run build -w backend && npm run build -w frontend",
     "start": "concurrently -n FRONT,BACK -c green,cyan \"npm run start -w frontend\" \"npm run start -w backend\"",
     "typecheck": "npm run typecheck -w backend && npm run typecheck -w frontend",
-    "railway:build:backend": "npm run build -w @vale-ou-golpe/contracts && npm run build -w backend",
+    "railway:build:backend": "npm run build -w @vale-a-compra/contracts && npm run build -w backend",
     "railway:start:backend": "npm run start -w backend",
-    "railway:build:frontend": "npm run build -w @vale-ou-golpe/contracts && npm run build -w frontend",
+    "railway:build:frontend": "npm run build -w @vale-a-compra/contracts && npm run build -w frontend",
     "railway:start:frontend": "npm run start -w frontend"
   },
   "dependencies": { "concurrently": "^9.2.1" }

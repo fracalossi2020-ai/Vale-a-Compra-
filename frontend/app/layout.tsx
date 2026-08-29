@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Vale ou é Golpe? | Analise antes de comprar",
+  title: "Vale a compra? | Analise antes de comprar",
   description: "Compare preço, reputação, avaliações e alternativas antes de comprar online.",
 };
 

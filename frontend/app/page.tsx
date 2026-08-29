@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import type { FormEvent } from "react";
-import type { ProductAnalysis } from "@vale-ou-golpe/contracts";
+import type { ProductAnalysis } from "@vale-a-compra/contracts";
 import { ArrowRight, BadgeCheck, Bell, Check, ExternalLink, Link2, LoaderCircle, Search, ShieldCheck, Sparkles, Star, Store, TrendingDown } from "lucide-react";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "";
@@ -96,7 +96,7 @@ export default function Home() {
   return (
     <main>
       <nav className="nav shell">
-        <a className="brand" href="#"><span className="brand-mark"><ShieldCheck size={24} /></span><span>Vale ou é <strong>Golpe?</strong></span></a>
+        <a className="brand" href="#"><span className="brand-mark"><ShieldCheck size={24} /></span><span>Vale a <strong>compra?</strong></span></a>
         <div className="nav-links"><a href="#como-funciona">Como funciona</a><a href="#seguranca">Segurança</a><button className="ghost"><Bell size={17} /> Minhas ofertas</button></div>
       </nav>
 
@@ -141,7 +141,7 @@ export default function Home() {
 
       <section className="how shell" id="como-funciona"><div><span className="section-kicker">Simples e transparente</span><h2>Uma decisão melhor em três passos.</h2></div><div className="steps"><article><b>01</b><Link2/><h3>Cole o link</h3><p>Envie a URL do produto que você está pensando em comprar.</p></article><article><b>02</b><Sparkles/><h3>Nós analisamos</h3><p>Comparamos os sinais mais importantes da oferta e do vendedor.</p></article><article><b>03</b><ArrowRight/><h3>Decida com clareza</h3><p>Receba uma nota, os motivos e uma alternativa mais econômica.</p></article></div></section>
       <section className="trust" id="seguranca"><div className="shell"><ShieldCheck size={34}/><div><h2>Nota explicada, sem promessa mágica.</h2><p>Mostramos os critérios utilizados. “Alto risco” representa sinais insuficientes ou desfavoráveis — não uma acusação contra a loja.</p></div></div></section>
-      <footer className="shell"><a className="brand" href="#"><span className="brand-mark"><ShieldCheck size={21}/></span><span>Vale ou é <strong>Golpe?</strong></span></a><p>Compare. Entenda. Compre melhor.</p></footer>
+      <footer className="shell"><a className="brand" href="#"><span className="brand-mark"><ShieldCheck size={21}/></span><span>Vale a <strong>compra?</strong></span></a><p>Compare. Entenda. Compre melhor.</p></footer>
     </main>
   );
 }

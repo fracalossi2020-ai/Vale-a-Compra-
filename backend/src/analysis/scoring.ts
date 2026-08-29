@@ -1,4 +1,4 @@
-import type { ProductAnalysis, ScoreBreakdown, Verdict } from "@vale-ou-golpe/contracts";
+import type { ProductAnalysis, ScoreBreakdown, Verdict } from "@vale-a-compra/contracts";
 import type { MarketplaceProduct } from "../marketplaces/types.js";
 import { createAffiliateUrl } from "../affiliate/affiliate.service.js";
 

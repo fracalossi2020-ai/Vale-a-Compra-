@@ -1,4 +1,4 @@
-# Vale ou é Golpe?
+# Vale a compra?
 
 MVP para analisar ofertas de e-commerce usando preço, reputação do vendedor, avaliações, qualidade do anúncio, frete e garantia.
 
@@ -54,4 +54,4 @@ Se preferir escalar cada parte de maneira independente, use dois serviços e man
 - Build command: `npm run railway:build:frontend`
 - Start command: `npm run railway:start:frontend`
 
-O workspace `@vale-ou-golpe/contracts` é uma biblioteca compartilhada e não deve existir como serviço no Railway.
+O workspace `@vale-a-compra/contracts` é uma biblioteca compartilhada e não deve existir como serviço no Railway.

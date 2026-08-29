@@ -9,7 +9,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@vale-ou-golpe/contracts": "file:../packages/contracts",
+    "@vale-a-compra/contracts": "file:../packages/contracts",
     "lucide-react": "^0.542.0",
     "next": "^16.1.6",
     "react": "^19.2.3",
