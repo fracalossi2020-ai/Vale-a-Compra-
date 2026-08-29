@@ -25,3 +25,20 @@ O Mercado Livre possui um provedor dedicado. Amazon, Shopee, Magalu, Netshoes e 
 `AFFILIATE_REDIRECT_TEMPLATE` recebe um modelo como `https://seu-redirecionador.com/?url={url}`. Sem isso, o site mantém o link original e informa que a monetização não está configurada.
 
 O resultado usa “alto risco” em vez de afirmar que uma empresa é golpe. A pontuação é uma ajuda à decisão e deve sempre exibir os fatores que a formaram.
+
+## Railway
+
+Este repositório é um monorepo, mas somente dois serviços devem ser publicados. Em ambos, mantenha o diretório raiz como `/`.
+
+### Backend
+
+- Build command: `npm run railway:build:backend`
+- Start command: `npm run railway:start:backend`
+- Healthcheck: `/health`
+
+### Frontend
+
+- Build command: `npm run railway:build:frontend`
+- Start command: `npm run railway:start:frontend`
+
+O workspace `@vale-ou-golpe/contracts` é uma biblioteca compartilhada e não deve existir como serviço no Railway.
