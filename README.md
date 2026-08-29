@@ -28,7 +28,20 @@ O resultado usa “alto risco” em vez de afirmar que uma empresa é golpe. A p
 
 ## Railway
 
-Este repositório é um monorepo, mas somente dois serviços devem ser publicados. Em ambos, mantenha o diretório raiz como `/`.
+O projeto pode ser publicado como um único serviço. O Next.js atende na porta pública do Railway e encaminha `/api` para o backend na porta interna `4000`.
+
+### Serviço único (recomendado)
+
+- Root directory: `/`
+- Build command: `npm run build`
+- Start command: `npm run start`
+- Variável: `BACKEND_PORT=4000`
+
+Não defina `NEXT_PUBLIC_API_URL` nesse modo; a interface usa `/api` no mesmo domínio.
+
+### Serviços separados (alternativa)
+
+Se preferir escalar cada parte de maneira independente, use dois serviços e mantenha o diretório raiz de ambos como `/`.
 
 ### Backend
 

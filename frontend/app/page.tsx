@@ -5,7 +5,7 @@ import type { FormEvent } from "react";
 import type { ProductAnalysis } from "@vale-ou-golpe/contracts";
 import { ArrowRight, BadgeCheck, Bell, Check, ExternalLink, Link2, LoaderCircle, Search, ShieldCheck, Sparkles, Star, Store, TrendingDown } from "lucide-react";
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:4000";
+const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "";
 
 const verdicts = {
   "vale-muito": { label: "Vale muito", className: "great" },
