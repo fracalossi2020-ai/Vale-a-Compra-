@@ -1,0 +1,11 @@
+{
+  "name": "vale-ou-e-golpe",
+  "private": true,
+  "workspaces": ["frontend", "backend", "packages/*"],
+  "scripts": {
+    "dev": "concurrently -n FRONT,BACK -c green,cyan \"npm run dev -w frontend\" \"npm run dev -w backend\"",
+    "build": "npm run build -w @vale-ou-golpe/contracts && npm run build -w backend && npm run build -w frontend",
+    "typecheck": "npm run typecheck -w backend && npm run typecheck -w frontend"
+  },
+  "devDependencies": { "concurrently": "^9.2.1" }
+}
