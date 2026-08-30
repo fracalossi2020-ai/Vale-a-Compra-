@@ -56,8 +56,9 @@ export async function analysisRoutes(app: FastifyInstance) {
     return reply.code(502).send({
       code: isMercadoLivre ? "MERCADO_LIVRE_AUTH_REQUIRED" : "PRODUCT_DATA_UNAVAILABLE",
       message: isMercadoLivre
-        ? "O Mercado Livre bloqueou a consulta pública. Conecte a API do Mercado Livre para analisar esta oferta."
+        ? "O Mercado Livre recusou os dados deste anúncio. Veja o diagnóstico técnico retornado."
         : failures.at(-1) ?? "Não foi possível analisar o produto.",
+      diagnostic: isMercadoLivre ? failures : undefined,
     });
   });
 }

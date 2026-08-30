@@ -15,7 +15,7 @@ function configuration() {
 export async function mercadoLivreAuthRoutes(app: FastifyInstance) {
   app.get("/auth/mercado-livre", async (_, reply) => {
     const existing = await readMercadoLivreCredentials();
-    if (existing) return reply.type("text/html").send("<h1>Mercado Livre já conectado.</h1><p>Você pode fechar esta janela.</p>");
+    if (existing) return reply.type("text/html; charset=utf-8").send("<h1>Mercado Livre j&aacute; conectado.</h1><p>Voc&ecirc; pode fechar esta janela.</p>");
     const { clientId, redirectUri } = configuration();
     const state = randomBytes(24).toString("base64url");
     states.set(state, Date.now() + 10 * 60_000);
@@ -40,6 +40,6 @@ export async function mercadoLivreAuthRoutes(app: FastifyInstance) {
     const token = await response.json() as { access_token?: string; refresh_token?: string; expires_in?: number; message?: string };
     if (!response.ok || !token.access_token) return reply.code(502).type("text/html").send(`<h1>Falha ao conectar</h1><p>${token.message ?? `Erro ${response.status}`}</p>`);
     await saveMercadoLivreCredentials({ accessToken: token.access_token, refreshToken: token.refresh_token, expiresAt: new Date(Date.now() + (token.expires_in ?? 21_600) * 1_000) });
-    return reply.type("text/html").send("<main style='font-family:sans-serif;max-width:600px;margin:80px auto;text-align:center'><h1>Mercado Livre conectado!</h1><p>Os tokens foram armazenados de forma criptografada. Você já pode fechar esta janela e analisar ofertas.</p><a href='/'>Voltar ao Vale a compra?</a></main>");
+    return reply.type("text/html; charset=utf-8").send("<main style='font-family:sans-serif;max-width:600px;margin:80px auto;text-align:center'><h1>Mercado Livre conectado!</h1><p>Os tokens foram armazenados de forma criptografada. Voc&ecirc; j&aacute; pode fechar esta janela e analisar ofertas.</p><a href='/'>Voltar ao Vale a compra?</a></main>");
   });
 }

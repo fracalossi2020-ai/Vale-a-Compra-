@@ -27,7 +27,7 @@ export class MercadoLivreProvider implements MarketplaceProvider {
     const response = await fetch(`https://api.mercadolibre.com${path}`, { headers: await this.headers() });
     if (!response.ok) {
       if (response.status === 401 || response.status === 403) {
-        throw new Error("A integração do Mercado Livre precisa de um token válido no backend.");
+        throw new Error(`A API do Mercado Livre recusou ${path.split("?")[0]} com status ${response.status}.`);
       }
       throw new Error(`Mercado Livre respondeu com erro ${response.status}.`);
     }
