@@ -4,17 +4,29 @@ import { MercadoLivreProvider } from "../marketplaces/mercado-livre.js";
 import { StructuredProductProvider } from "../marketplaces/structured-product.js";
 import { scoreProduct } from "./scoring.js";
 import { database } from "../database.js";
-import { mercadoLivreCredentialsConfigured } from "../marketplaces/mercado-livre-token.js";
+import { getMercadoLivreToken, mercadoLivreCredentialsConfigured } from "../marketplaces/mercado-livre-token.js";
 
 const providers = [new MercadoLivreProvider(), new StructuredProductProvider()];
 const bodySchema = z.object({ url: z.url() });
 
 export async function analysisRoutes(app: FastifyInstance) {
-  app.get("/integrations/mercado-livre/status", async () => ({
-    marketplace: "Mercado Livre",
-    configured: mercadoLivreCredentialsConfigured(),
-    authentication: process.env.MERCADO_LIVRE_ACCESS_TOKEN ? "access_token" : "client_credentials",
-  }));
+  app.get("/integrations/mercado-livre/status", async () => {
+    const configured = mercadoLivreCredentialsConfigured();
+    if (!configured) return { marketplace: "Mercado Livre", configured, connected: false };
+    try {
+      const token = await getMercadoLivreToken();
+      return {
+        marketplace: "Mercado Livre", configured, connected: Boolean(token),
+        authentication: process.env.MERCADO_LIVRE_ACCESS_TOKEN ? "access_token" : "client_credentials",
+      };
+    } catch (error) {
+      return {
+        marketplace: "Mercado Livre", configured, connected: false,
+        authentication: "client_credentials",
+        error: error instanceof Error ? error.message : "Falha de autenticação",
+      };
+    }
+  });
 
   app.post("/analysis", async (request, reply) => {
     const parsed = bodySchema.safeParse(request.body);
