@@ -1,5 +1,13 @@
 create extension if not exists pgcrypto;
 
+create table if not exists marketplace_credentials (
+  marketplace varchar(50) primary key,
+  access_token text not null,
+  refresh_token text,
+  expires_at timestamptz not null,
+  updated_at timestamptz not null default now()
+);
+
 create table if not exists analyses (
   id uuid primary key default gen_random_uuid(),
   product_url text not null,
