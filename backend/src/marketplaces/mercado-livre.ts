@@ -1,4 +1,5 @@
 import type { MarketplaceProduct, MarketplaceProvider } from "./types.js";
+import { getMercadoLivreToken } from "./mercado-livre-token.js";
 
 const ALLOWED_HOSTS = ["mercadolivre.com.br", "mercadolivre.com", "meli.la"];
 
@@ -17,13 +18,13 @@ export class MercadoLivreProvider implements MarketplaceProvider {
     return isAllowedHost(url.hostname.toLowerCase());
   }
 
-  private headers() {
-    const token = process.env.MERCADO_LIVRE_ACCESS_TOKEN?.trim();
+  private async headers() {
+    const token = await getMercadoLivreToken();
     return token ? { Authorization: `Bearer ${token}` } : undefined;
   }
 
   private async api<T>(path: string): Promise<T> {
-    const response = await fetch(`https://api.mercadolibre.com${path}`, { headers: this.headers() });
+    const response = await fetch(`https://api.mercadolibre.com${path}`, { headers: await this.headers() });
     if (!response.ok) {
       if (response.status === 401 || response.status === 403) {
         throw new Error("A integração do Mercado Livre precisa de um token válido no backend.");
