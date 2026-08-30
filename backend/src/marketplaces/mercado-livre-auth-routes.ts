@@ -13,9 +13,10 @@ function configuration() {
 }
 
 export async function mercadoLivreAuthRoutes(app: FastifyInstance) {
-  app.get("/auth/mercado-livre", async (_, reply) => {
+  app.get("/auth/mercado-livre", async (request, reply) => {
+    const query = request.query as { reauthorize?: string };
     const existing = await readMercadoLivreCredentials();
-    if (existing) return reply.type("text/html; charset=utf-8").send("<h1>Mercado Livre j&aacute; conectado.</h1><p>Voc&ecirc; pode fechar esta janela.</p>");
+    if (existing && query.reauthorize !== "1") return reply.type("text/html; charset=utf-8").send("<h1>Mercado Livre j&aacute; conectado.</h1><p>Voc&ecirc; pode fechar esta janela ou <a href='/api/auth/mercado-livre?reauthorize=1'>renovar as permiss&otilde;es</a>.</p>");
     const { clientId, redirectUri } = configuration();
     const state = randomBytes(24).toString("base64url");
     states.set(state, Date.now() + 10 * 60_000);
